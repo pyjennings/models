@@ -74,9 +74,21 @@ layer {
   }
 }
 layer {
+  name: "ip1_reshape"
+  type: "Reshape"
+  bottom: "pool2"
+  top: "pool2_reshape"
+  reshape_param {
+    shape {
+      dim: -1
+      dim: 800
+    }
+  }
+}
+layer {
   name: "ip1"
   type: "InnerProduct"
-  bottom: "pool2"
+  bottom: "pool2_reshape"
   top: "ip1"
   param {
     lr_mult: 1
